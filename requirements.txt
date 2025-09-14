@@ -4,3 +4,13 @@ requests
 pandas
 numpy
 scikit-learn
+lightgbm
+xgboost
+shap
+pyyaml
+python-dotenv
+streamlit
+plotly
+sqlalchemy
+celery
+redis
