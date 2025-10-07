@@ -1,0 +1,96 @@
+# Salt Repository Configuration
+repository:
+  name: salt
+  url: https://github.com/saltstack/salt.git
+  primary_language: python
+  description: "Software to automate the management and configuration of any infrastructure"
+
+extraction:
+  # Time range for commits
+  start_date: "2020-01-01"  # Start from 2020 (4+ years of data)
+  end_date: null  # null = until today
+  
+  # Branches to analyze
+  branches:
+    - master
+  
+  # File filters
+  include_extensions:
+    - .py
+  exclude_paths:
+    - tests/
+    - doc/
+    - .github/
+  
+  # Commit filters
+  min_files_changed: 1
+  max_files_changed: 50  # Ignore massive refactors
+  min_lines_changed: 1
+  max_lines_changed: 1000  # Ignore huge commits
+  
+  # Merge commits
+  exclude_merges: true
+
+labels:
+  # Label sources (in priority order)
+  sources:
+    - github_labels
+    - commit_keywords
+    - issue_priority
+  
+  # GitHub label mapping
+  github_label_map:
+    "severity-critical": "high"
+    "severity/critical": "high"
+    "Critical": "high"
+    "severity-high": "high"
+    "severity/high": "high"
+    "High": "high"
+    "severity-medium": "medium"
+    "severity/medium": "medium"
+    "Medium": "medium"
+    "severity-low": "low"
+    "severity/low": "low"
+    "Low": "low"
+    "priority-critical": "high"
+    "priority-high": "high"
+    "priority-medium": "medium"
+    "priority-low": "low"
+    "blocker": "high"
+    "major": "high"
+    "minor": "medium"
+    "trivial": "low"
+  
+  # Keyword detection in commit messages
+  keyword_patterns:
+    high:
+      - "security"
+      - "vulnerability"
+      - "cve-"
+      - "exploit"
+      - "crash"
+      - "data loss"
+      - "corruption"
+      - "critical bug"
+      - "urgent"
+    medium:
+      - "bug"
+      - "fix"
+      - "issue"
+      - "problem"
+      - "error"
+      - "failure"
+    low:
+      - "typo"
+      - "formatting"
+      - "whitespace"
+      - "comment"
+      - "docstring"
+      - "style"
+      - "cleanup"
+
+output:
+  # Where to save extracted data
+  raw_commits: "data/interim/salt_commits_raw.csv"
+  filtered_commits: "data/interim/salt_commits_filtered.csv"
+  labeled_commits: "data/interim/salt_commits_labeled.csv"
