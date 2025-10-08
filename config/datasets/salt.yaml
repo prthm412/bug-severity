@@ -1,4 +1,7 @@
 # Salt Repository Configuration
+# Data range: 2020-present (~18K commits)
+# This provides recent, well-labeled commits with modern patterns
+
 repository:
   name: salt
   url: https://github.com/saltstack/salt.git
