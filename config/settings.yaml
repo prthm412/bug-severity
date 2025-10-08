@@ -1,0 +1,23 @@
+# config/settings.yaml
+
+repos:
+  - saltstack/salt
+
+label_mapping:
+  severity-critical: Critical
+  severity-high: High
+  severity-medium: Medium
+  severity-low: Low
+
+# fallback keywords for commit messaegs (used only if an issue link is missing)
+message_keywords:
+  critical: Critical
+  blocker: Critical
+  high: High
+  medium: Medium
+  low: Low
+
+# how many records to pull on first run (may increase later)
+limits:
+  issues: 1000
+  commits: 1000
